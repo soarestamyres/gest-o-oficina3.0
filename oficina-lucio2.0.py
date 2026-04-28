@@ -44,8 +44,8 @@ if check_password():
     # --- LER DADOS DO GOOGLE SHEETS ---
     try:
         # AJUSTE 2: Adicionamos o parâmetro spreadsheet diretamente na leitura para garantir o foco
-        url_planilha = "https://docs.google.com/spreadsheets/d/16miIATA1kuth-RpfA9s7wGMf7r02ZXFScOwYYLj2o2k/edit?usp=sharing"
-        dados_atuais = conn.read(spreadsheet=url_planilha, worksheet="Página1", ttl=0)
+        # Procure a linha do update e mude para:
+conn.update(spreadsheet=st.secrets["spreadsheet_url"], data=dados_para_salvar)
     except Exception:
         dados_atuais = pd.DataFrame(columns=["O.S.", "Data", "Placa", "Cliente", "KM", "Serviço", "Valor"])
 
@@ -86,7 +86,7 @@ if check_password():
                 df_final = pd.concat([dados_atuais, nova_os], ignore_index=True)
                 
                 try:
-                    conn.update(spreadsheet=url_planilha, worksheet="Página1", data=df_final)
+                    conn.update(spreadsheet=st.secrets["spreadsheet_url"], worksheet="Página1", data=df_final)
                     st.success(f"✅ O.S. {proxima_os_num:03d} salva com sucesso!")
                     st.balloons()
                     st.rerun()
