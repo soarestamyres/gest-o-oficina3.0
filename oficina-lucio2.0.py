@@ -115,5 +115,5 @@ elif menu == "Histórico de O.S.":
 
 # RODAPÉ - SIDEBAR
 st.sidebar.markdown("---")
-    st.sidebar.write("💻 Desenvolvido por Tamyres Monteiro")
-    st.sidebar.caption("Projeto Voluntário - Faculdade")
+st.sidebar.write("💻 Desenvolvido por Tamyres Monteiro")
+st.sidebar.caption("Projeto Voluntário - Faculdade")
