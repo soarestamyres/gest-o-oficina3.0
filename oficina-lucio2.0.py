@@ -31,7 +31,7 @@ if check_password():
     
     # 3. CONEXÃO COM O GOOGLE SHEETS
     # Usamos st.connection para integrar com a planilha do Google
-    conn = st.connection("gsheets", type=GSheetsConnection)
+    conn = st.connection("gsheets", type="gsheets", spreadsheet="https://docs.google.com/spreadsheets/d/16miIATA1kuth-RpfA9s7wGMf7r02ZXFScOwYYLj2o2k/edit?usp=sharing")
 
     # Título Principal
     st.title("🔧 Mecânica do Bigode - Gestão")
