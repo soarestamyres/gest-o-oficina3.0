@@ -41,14 +41,13 @@ if check_password():
     # Menu Lateral
     menu = st.sidebar.selectbox("Menu de Navegação", ["Novo Cadastro", "Histórico de O.S."])
 
-    # --- LER DADOS DO GOOGLE SHEETS ---
-    try:
-        # AJUSTE 2: Adicionamos o parâmetro spreadsheet diretamente na leitura para garantir o foco
-        # Procure a linha do update e mude para:
-conn.update(spreadsheet=st.secrets["spreadsheet_url"], data=dados_para_salvar)
-    except Exception:
-        dados_atuais = pd.DataFrame(columns=["O.S.", "Data", "Placa", "Cliente", "KM", "Serviço", "Valor"])
-
+   # --- LER DADOS DO GOOGLE SHEETS ---
+try:
+    # A linha abaixo lê a planilha e cria a variável dados_atuais
+    dados_atuais = conn.read(spreadsheet=st.secrets["spreadsheet_url"], worksheet="Página1", ttl=0)
+except Exception:
+    # Se der erro na leitura, ele cria um banco de dados vazio para não travar
+    dados_atuais = pd.DataFrame(columns=["O.S.", "Data", "Placa", "Cliente", "KM", "Serviço", "Valor"])
     if menu == "Novo Cadastro":
         st.header("📝 Abrir Nova Ordem de Serviço")
         
